@@ -3,7 +3,6 @@ import streamlit as st
 
 from assessment import QUESTIONS, calculate_score, determine_level
 
-
 st.set_page_config(
     page_title="Level-Aware Educational Platform",
     page_icon="📚",
