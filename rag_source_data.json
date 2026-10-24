@@ -1,0 +1,896 @@
+{
+  "nodes": [
+    {
+      "node_id": "C01",
+      "text": "## Activity 1: كائنات حية متنوعة\n\nقامت هند بجولة في مزرعة جدها، ثم التقطت مجموعة من الصور لعدد من الكائنات الحية الموجودة فيها، ثم بحثت وكتبت عدد الكروموسومات على كل منها.\n\nتأمل الصور الآتية، ثم أجب عن الأسئلة التي تليها.\n\n### Figure Information\n\n- البطاطا: 48 كروموسومًا.\n- الحصان: 64 كروموسومًا.\n- النملة: 48 كروموسومًا.\n- الإنسان: 46 كروموسومًا.\n- الشمبانزي: 48 كروموسومًا.\n- الحمار: 62 كروموسومًا.\n- الخيار: 14 كروموسومًا.\n- الدجاج: 78 كروموسومًا.\n\n### Questions\n\n1. هل يوجد علاقة بين حجم الكائن الحي وعدد الكروموسومات في خلايا جسمه؟\n2. هل عدد الكروموسومات يحدد صفات الكائن الحي؟ وضح ذلك.\n\n---",
+      "metadata": {
+        "schema_version": "2.0.0",
+        "provenance": {
+          "chunk_id": "C01",
+          "curriculum": "Palestinian Curriculum",
+          "grade_level": 8,
+          "subject": "العلوم والحياة",
+          "lesson_number": 3,
+          "lesson_title_ar": "انقسام الخلايا",
+          "page_numbers": [
+            23
+          ],
+          "source_unit_ids": [
+            "p23_u02",
+            "p23_u03",
+            "p23_u04",
+            "p23_u05"
+          ],
+          "content_types": [
+            "activity",
+            "visual_information",
+            "question"
+          ],
+          "source_document_id": "palestinian_grade8_science_lesson3_pages23_29",
+          "topic_label": "Chromosome Numbers in Living Organisms",
+          "language": "ar"
+        },
+        "pedagogical": {
+          "curriculum_coverage_levels": [
+            "basic",
+            "intermediate",
+            "advanced"
+          ],
+          "core_concepts": [
+            "الكروموسومات",
+            "أعداد الكروموسومات"
+          ],
+          "objective_refs": []
+        },
+        "retrieval_rules": {
+          "dependencies": [],
+          "has_visual_data": true,
+          "visual_source_unit_ids": [
+            "p23_u03"
+          ],
+          "visual_asset_refs": [],
+          "visual_representation": "text_description"
+        },
+        "scientific_entities": {
+          "chromosome_counts": {
+            "البطاطا": 48,
+            "الحصان": 64,
+            "النملة": 48,
+            "الإنسان": 46,
+            "الشمبانزي": 48,
+            "الحمار": 62,
+            "الخيار": 14,
+            "الدجاج": 78
+          },
+          "chromosome_pair_numbers": [],
+          "numerical_formulas": [],
+          "scientific_review": {
+            "status": "not_reviewed",
+            "issue_ids": []
+          }
+        }
+      }
+    },
+    {
+      "node_id": "C02",
+      "text": "## Activity 2: الخلايا تضاعف أعدادها\n\nيوجد في صفك نسخ عدة متماثلة من كتاب العلوم، وقد طبع من هذا الكتاب آلاف النسخ لطلبة الصف الثامن في المدارس الفلسطينية، أما خلايا جسمك فتمر في أطوار عدة لإنتاج نسخ متماثلة من الخلايا، دون استخدام ماكينات تصوير، فجسمك يحتاج إلى خلايا جديدة في كل وقت، لماذا؟\n\n### Figure Information: ازدياد عدد الخلايا\n\nيُظهر الرسم خلية واحدة منفردة، ثم مجموعة صغيرة من الخلايا المتشابهة، ثم مجموعة أكبر منها، في تسلسل بصري يوضح ازدياد عدد الخلايا.\n\n\n### Questions\n\n1. صف ما حدث للخلية الواحدة في الشكل.\n2. ما الهدف من انقسام الخلايا؟\n3. هل يستمر انقسام الخلايا بالسرعة نفسها مع التقدم في العمر؟\n\n## Explanatory Content\n\nكثير من الخلايا في أجسامنا تنقسم وتتكاثر، وتنتج خلايا جديدة، قد تكون مطابقة للخلايا الأصلية، أو غير مطابقة.\n\nوقبل انقسام الخلايا تكون الكروموسومات مفردة، وعلى شكل خيوط طويلة رفيعة ومتشابكة داخل النواة في الخلايا، تسمى شبكة كروماتينية.\n\nولا يمكن مشاهدتها على هيئة كروموسومات مستقلة بوضوح في حال عدم انقسام الخلية.\n\nيحدث تضاعف لمادة الوراثة (DNA) والعضيات، قبل البدء بعملية الانقسام.\n\n### Figure Information: مراحل تضاعف الكروموسومات في نواة الخلية\n\n- قبل التضاعف.\n- تضاعف DNA.\n- نسخة أصلية.\n- نسخة جديدة.\n\n---",
+      "metadata": {
+        "schema_version": "2.0.0",
+        "provenance": {
+          "chunk_id": "C02",
+          "curriculum": "Palestinian Curriculum",
+          "grade_level": 8,
+          "subject": "العلوم والحياة",
+          "lesson_number": 3,
+          "lesson_title_ar": "انقسام الخلايا",
+          "page_numbers": [
+            24
+          ],
+          "source_unit_ids": [
+            "p24_u01",
+            "p24_u02",
+            "p24_u03",
+            "p24_u04",
+            "p24_u05",
+            "p24_u06",
+            "p24_u07",
+            "p24_u08"
+          ],
+          "content_types": [
+            "activity",
+            "question",
+            "explanation",
+            "visual_information"
+          ],
+          "source_document_id": "palestinian_grade8_science_lesson3_pages23_29",
+          "topic_label": "Cell Division and Preparation",
+          "language": "ar"
+        },
+        "pedagogical": {
+          "curriculum_coverage_levels": [
+            "basic",
+            "intermediate",
+            "advanced"
+          ],
+          "core_concepts": [
+            "انقسام الخلايا",
+            "الشبكة الكروماتينية",
+            "تضاعف DNA"
+          ],
+          "objective_refs": []
+        },
+        "retrieval_rules": {
+          "dependencies": [],
+          "has_visual_data": true,
+          "visual_source_unit_ids": [
+            "p24_u07",
+            "p24_u08"
+          ],
+          "visual_asset_refs": [],
+          "visual_representation": "text_description"
+        },
+        "scientific_entities": {
+          "chromosome_counts": {},
+          "chromosome_pair_numbers": [],
+          "numerical_formulas": [],
+          "scientific_review": {
+            "status": "not_reviewed",
+            "issue_ids": []
+          }
+        }
+      }
+    },
+    {
+      "node_id": "C03",
+      "text": "## Explanatory Content: تركيب الكروموسوم\n\nيظهر كل كروموسوم متضاعف تحت المجهر الإلكتروني مكونًا من كروماتيدين (كروماتيد أصلي وكروماتيد جديد).\n\nيرتبط كل كروماتيدين بنقطة تسمى السنترومير.\n\n### Figure Information: تضاعف الكروموسوم\n\nيوضح الشكل الكروموسومات المتناظرة قبل التضاعف، ثم الكروموسومات المتناظرة المتضاعفة، مع تسمية السنترومير والكروماتيدات الشقيقة.\n\n\n## Activity 3: تمثيل الكروموسوم\n\n### Materials and Tools\n\n- لوح كرتون أو خشبي رقيق (50 سم × 50 سم).\n- مقص.\n- خيوط صوف ملونة.\n- مادة لاصقة.\n\n### Procedure\n\n1. قص خيوط الصوف بأطوال مختلفة، ثم اربط كل خيطين متشابهين في اللون والطول من المنتصف بخيط من لون آخر يمثل السنترومير.\n2. ألصق أزواج الخيوط الملونة على اللوح الذي أحضرته.\n\n### Questions\n\n1. اقترح مواد وطرقًا أخرى لتمثيل الكروموسوم.\n2. لو وضعت خيط الصوف أسفل عدسة محدبة كبيرة، أو شاهدته تحت المجهر التشريحي، ماذا ستلاحظ؟ وما وجه الشبه مع بنية الكروموسوم؟\n\n---",
+      "metadata": {
+        "schema_version": "2.0.0",
+        "provenance": {
+          "chunk_id": "C03",
+          "curriculum": "Palestinian Curriculum",
+          "grade_level": 8,
+          "subject": "العلوم والحياة",
+          "lesson_number": 3,
+          "lesson_title_ar": "انقسام الخلايا",
+          "page_numbers": [
+            25
+          ],
+          "source_unit_ids": [
+            "p25_u01",
+            "p25_u02",
+            "p25_u04",
+            "p25_u05",
+            "p25_u06",
+            "p25_u07"
+          ],
+          "content_types": [
+            "explanation",
+            "visual_information",
+            "activity",
+            "question"
+          ],
+          "source_document_id": "palestinian_grade8_science_lesson3_pages23_29",
+          "topic_label": "Duplicated Chromosome Structure",
+          "language": "ar"
+        },
+        "pedagogical": {
+          "curriculum_coverage_levels": [
+            "basic",
+            "intermediate",
+            "advanced"
+          ],
+          "core_concepts": [
+            "الكروموسوم المتضاعف",
+            "الكروماتيد",
+            "السنترومير"
+          ],
+          "objective_refs": []
+        },
+        "retrieval_rules": {
+          "dependencies": [],
+          "has_visual_data": true,
+          "visual_source_unit_ids": [
+            "p25_u02"
+          ],
+          "visual_asset_refs": [],
+          "visual_representation": "text_description"
+        },
+        "scientific_entities": {
+          "chromosome_counts": {},
+          "chromosome_pair_numbers": [],
+          "numerical_formulas": [],
+          "scientific_review": {
+            "status": "not_reviewed",
+            "issue_ids": []
+          }
+        }
+      }
+    },
+    {
+      "node_id": "C04",
+      "text": "## Explanatory Content: أنواع الخلايا\n\nتتكون أجسام الكائنات الحية عديدة الخلايا التي تتكاثر جنسيًا من نوعين رئيسين من الخلايا.\n\n### الخلايا الجسمية\n\nتشمل خلايا جسم الكائنات الحية الراقية، وتنقسم النواة بطريقة الانقسام المتساوي، وينتج عنه خليتان (ابنتان)، تحتوي كلاهما على العدد نفسه من الكروموسومات.\n\n### Figure Information\n\nيوضح الشكل مثالًا عدديًا:\n\n**46 → 46 + 46**\n\n\n### الخلايا التناسلية (الجنسية المنتجة للغاميتات)\n\nتوجد في الأعضاء الجنسية الذكرية والأنثوية لدى معظم الحيوانات والنباتات، وتنقسم النواة بطريقة الانقسام المنصف منتجة الغاميتات.\n\n---",
+      "metadata": {
+        "schema_version": "2.0.0",
+        "provenance": {
+          "chunk_id": "C04",
+          "curriculum": "Palestinian Curriculum",
+          "grade_level": 8,
+          "subject": "العلوم والحياة",
+          "lesson_number": 3,
+          "lesson_title_ar": "انقسام الخلايا",
+          "page_numbers": [
+            25,
+            26
+          ],
+          "source_unit_ids": [
+            "p25_u08",
+            "p25_u09",
+            "p25_u10",
+            "p26_u01"
+          ],
+          "content_types": [
+            "explanation",
+            "visual_information"
+          ],
+          "source_document_id": "palestinian_grade8_science_lesson3_pages23_29",
+          "topic_label": "Somatic and Reproductive Cells",
+          "language": "ar"
+        },
+        "pedagogical": {
+          "curriculum_coverage_levels": [
+            "basic",
+            "intermediate",
+            "advanced"
+          ],
+          "core_concepts": [
+            "الخلايا الجسمية",
+            "الخلايا التناسلية",
+            "الانقسام المتساوي",
+            "الانقسام المنصف"
+          ],
+          "objective_refs": []
+        },
+        "retrieval_rules": {
+          "dependencies": [],
+          "has_visual_data": true,
+          "visual_source_unit_ids": [
+            "p25_u10"
+          ],
+          "visual_asset_refs": [],
+          "visual_representation": "text_description"
+        },
+        "scientific_entities": {
+          "chromosome_counts": {
+            "الخلايا الجسمية في المثال": 46
+          },
+          "chromosome_pair_numbers": [],
+          "numerical_formulas": [
+            "46 -> 46 + 46"
+          ],
+          "scientific_review": {
+            "status": "not_reviewed",
+            "issue_ids": []
+          }
+        }
+      }
+    },
+    {
+      "node_id": "C05",
+      "text": "## Explanatory Content\n\nقبل دخول الخلية في عملية الانقسام الخلوي تمر بمرحلة تحضيرية تسمى الطور البيني، تنمو فيه الخلية ويزداد حجمها، وتتضاعف كمية المادة الوراثية (DNA).\n\n### الانقسام المتساوي\n\nيحدث في جميع خلايا الكائنات الحية وحيدة الخلية لتتكاثر مثل البراميسيوم، وعديدة الخلايا مثل الإنسان؛ للنمو، وتعويض الخلايا التالفة.\n\n---",
+      "metadata": {
+        "schema_version": "2.0.0",
+        "provenance": {
+          "chunk_id": "C05",
+          "curriculum": "Palestinian Curriculum",
+          "grade_level": 8,
+          "subject": "العلوم والحياة",
+          "lesson_number": 3,
+          "lesson_title_ar": "انقسام الخلايا",
+          "page_numbers": [
+            26
+          ],
+          "source_unit_ids": [
+            "p26_u03",
+            "p26_u04"
+          ],
+          "content_types": [
+            "explanation"
+          ],
+          "source_document_id": "palestinian_grade8_science_lesson3_pages23_29",
+          "topic_label": "Interphase and Purpose of Mitosis",
+          "language": "ar"
+        },
+        "pedagogical": {
+          "curriculum_coverage_levels": [
+            "basic",
+            "intermediate",
+            "advanced"
+          ],
+          "core_concepts": [
+            "الطور البيني",
+            "الانقسام المتساوي"
+          ],
+          "objective_refs": []
+        },
+        "retrieval_rules": {
+          "dependencies": [],
+          "has_visual_data": false,
+          "visual_source_unit_ids": [],
+          "visual_asset_refs": [],
+          "visual_representation": "none"
+        },
+        "scientific_entities": {
+          "chromosome_counts": {},
+          "chromosome_pair_numbers": [],
+          "numerical_formulas": [],
+          "scientific_review": {
+            "status": "not_reviewed",
+            "issue_ids": []
+          }
+        }
+      }
+    },
+    {
+      "node_id": "C06",
+      "text": "## Activity 4: الانقسام المتساوي للخلية الحيوانية\n\n### Activity Instruction\n\nادرس مراحل الانقسام المتساوي للخلية في الشكل أدناه، ثم أجب عن الأسئلة التي تليه.\n\n### Figure Information: مراحل الانقسام المتساوي\n\n#### الدور التمهيدي\n\n- تظهر كروموسومات قصيرة وغليظة متضاعفة.\n- يختفي الغلاف النووي.\n- تختفي النوية.\n\n#### الدور الاستوائي\n\n- تترتب الكروموسومات المتضاعفة فرادى في منتصف الخلية.\n- ترتبط خيوط المغزل بسنترومير كل كروموسوم من القطبين.\n\n#### الدور الانفصالي\n\n- تتباعد الكروماتيدات الشقيقة بفعل انكماش خيوط المغزل، كل إلى قطب.\n\n#### الدور النهائي\n\n- تتجمع الكروموسومات الوليدة في منتصف كل خلية جديدة.\n- يبدأ الغلاف النووي بالتكون والسيتوبلازم بالانقسام.\n\n#### انقسام السيتوبلازم\n\nينقسم السيتوبلازم وتنتج خليتان متماثلتان تحوي كل منهما على نفس عدد كروموسومات الخلية الأم.\n\n---",
+      "metadata": {
+        "schema_version": "2.0.0",
+        "provenance": {
+          "chunk_id": "C06",
+          "curriculum": "Palestinian Curriculum",
+          "grade_level": 8,
+          "subject": "العلوم والحياة",
+          "lesson_number": 3,
+          "lesson_title_ar": "انقسام الخلايا",
+          "page_numbers": [
+            26
+          ],
+          "source_unit_ids": [
+            "p26_u05",
+            "p26_u06",
+            "p26_u07",
+            "p26_u08",
+            "p26_u09",
+            "p26_u10"
+          ],
+          "content_types": [
+            "activity",
+            "visual_information"
+          ],
+          "source_document_id": "palestinian_grade8_science_lesson3_pages23_29",
+          "topic_label": "Mitosis Stages",
+          "language": "ar"
+        },
+        "pedagogical": {
+          "curriculum_coverage_levels": [
+            "basic",
+            "intermediate",
+            "advanced"
+          ],
+          "core_concepts": [
+            "أطوار الانقسام المتساوي",
+            "خيوط المغزل",
+            "انقسام السيتوبلازم"
+          ],
+          "objective_refs": []
+        },
+        "retrieval_rules": {
+          "dependencies": [],
+          "has_visual_data": true,
+          "visual_source_unit_ids": [
+            "p26_u06",
+            "p26_u07",
+            "p26_u08",
+            "p26_u09",
+            "p26_u10"
+          ],
+          "visual_asset_refs": [],
+          "visual_representation": "text_description"
+        },
+        "scientific_entities": {
+          "chromosome_counts": {},
+          "chromosome_pair_numbers": [],
+          "numerical_formulas": [],
+          "scientific_review": {
+            "status": "flagged",
+            "issue_ids": [
+              "SCI-C06-001"
+            ]
+          }
+        }
+      }
+    },
+    {
+      "node_id": "C07",
+      "text": "**Cross-Chunk Figure Dependency (metadata only):** أسئلة هذا النشاط مرتبطة بالشكل الموضح في C06 (الوحدات `p26_u06`–`p26_u10`). ينبغي ضم سياق C06 عند الإجابة عن الأسئلة التي تشير إلى «الشكل أعلاه». هذا التعليق ليس من نص الكتاب.\n\n## Activity 4: Questions\n\n1. ماذا يحدث إذا لم تمر الخلية في الطور البيني؟\n2. من خلال الشكل أعلاه، حدد الأدوار التي يمر بها الانقسام المتساوي.\n3. ما أهمية المريكزات، وخيوط المغزل في عملية الانقسام المتساوي؟\n4. لماذا تترتب الكروموسومات فرادى في منتصف الخلية في الدور الاستوائي؟\n5. هل الخلية المنقسمة حيوانية أم نباتية؟ فسر إجابتك.\n6. ما عدد الخلايا الناتجة عن الانقسام؟\n7. ما عدد الكروموسومات في الخلايا الناتجة؟\n\n---",
+      "metadata": {
+        "schema_version": "2.0.0",
+        "provenance": {
+          "chunk_id": "C07",
+          "curriculum": "Palestinian Curriculum",
+          "grade_level": 8,
+          "subject": "العلوم والحياة",
+          "lesson_number": 3,
+          "lesson_title_ar": "انقسام الخلايا",
+          "page_numbers": [
+            27
+          ],
+          "source_unit_ids": [
+            "p27_u01",
+            "p27_u02",
+            "p27_u03",
+            "p27_u04",
+            "p27_u05",
+            "p27_u06",
+            "p27_u07"
+          ],
+          "content_types": [
+            "question"
+          ],
+          "source_document_id": "palestinian_grade8_science_lesson3_pages23_29",
+          "topic_label": "Mitosis Questions",
+          "language": "ar"
+        },
+        "pedagogical": {
+          "curriculum_coverage_levels": [
+            "basic",
+            "intermediate",
+            "advanced"
+          ],
+          "core_concepts": [
+            "أطوار الانقسام المتساوي",
+            "المريكزات",
+            "خيوط المغزل"
+          ],
+          "objective_refs": []
+        },
+        "retrieval_rules": {
+          "dependencies": [
+            {
+              "chunk_id": "C06",
+              "relation": "requires_figure_context",
+              "required": true,
+              "source_unit_ids": [
+                "p26_u06",
+                "p26_u07",
+                "p26_u08",
+                "p26_u09",
+                "p26_u10"
+              ]
+            }
+          ],
+          "has_visual_data": false,
+          "visual_source_unit_ids": [],
+          "visual_asset_refs": [],
+          "visual_representation": "none"
+        },
+        "scientific_entities": {
+          "chromosome_counts": {},
+          "chromosome_pair_numbers": [],
+          "numerical_formulas": [],
+          "scientific_review": {
+            "status": "not_reviewed",
+            "issue_ids": []
+          }
+        }
+      }
+    },
+    {
+      "node_id": "C08",
+      "text": "## Activity 5: المقارنة بين انقسام الخلية النباتية والخلية الحيوانية\n\n### Activity Text\n\nعرض معلم العلوم والحياة على طلبته الشكل الآتي، ساعد الطلبة في تحديد أهم نقاط الاختلاف بين انقسام كل من الخلية الحيوانية والخلية النباتية.\n\n### Figure Information\n\n#### الخلية النباتية\n\n- الدور الانفصالي.\n- تجمعات بروتينية.\n- أكياس غشائية.\n- الدور النهائي.\n- تكون الصفيحة الوسطى.\n- انقسام السيتوبلازم.\n\n#### الخلية الحيوانية\n\n- مريكز.\n- الدور الانفصالي.\n- تخصر الغشاء.\n- الدور النهائي.\n- انقسام السيتوبلازم.\n\n---",
+      "metadata": {
+        "schema_version": "2.0.0",
+        "provenance": {
+          "chunk_id": "C08",
+          "curriculum": "Palestinian Curriculum",
+          "grade_level": 8,
+          "subject": "العلوم والحياة",
+          "lesson_number": 3,
+          "lesson_title_ar": "انقسام الخلايا",
+          "page_numbers": [
+            27
+          ],
+          "source_unit_ids": [
+            "p27_u08",
+            "p27_u09",
+            "p27_u10"
+          ],
+          "content_types": [
+            "activity",
+            "visual_information"
+          ],
+          "source_document_id": "palestinian_grade8_science_lesson3_pages23_29",
+          "topic_label": "Plant and Animal Cell Division",
+          "language": "ar"
+        },
+        "pedagogical": {
+          "curriculum_coverage_levels": [
+            "basic",
+            "intermediate",
+            "advanced"
+          ],
+          "core_concepts": [
+            "انقسام الخلية النباتية",
+            "انقسام الخلية الحيوانية"
+          ],
+          "objective_refs": []
+        },
+        "retrieval_rules": {
+          "dependencies": [],
+          "has_visual_data": true,
+          "visual_source_unit_ids": [
+            "p27_u09",
+            "p27_u10"
+          ],
+          "visual_asset_refs": [],
+          "visual_representation": "text_description"
+        },
+        "scientific_entities": {
+          "chromosome_counts": {},
+          "chromosome_pair_numbers": [],
+          "numerical_formulas": [],
+          "scientific_review": {
+            "status": "not_reviewed",
+            "issue_ids": []
+          }
+        }
+      }
+    },
+    {
+      "node_id": "C09",
+      "text": "## Activity 6: الانقسام المنصف\n\n### Activity Instruction\n\nادرس الشكل المجاور، وأجب عن الأسئلة الآتية.\n\n### Questions\n\n1. سم الخلايا التي يحدث فيها هذا النوع من الانقسام.\n2. ما المقصود بالانقسام المنصف؟\n3. ما عدد الخلايا الناتجة عنه؟\n4. ما عدد الكروموسومات في الخلايا الناتجة؟\n5. ماذا يطلق على الخلايا الناتجة؟\n6. ماذا تتوقع أن يحدث إذا وقع خلل أثناء انقسام الخلية الجنسية المنتجة للغاميتات في الإنسان، ونتج الحيوان المنوي، أو البويضة، بحيث يحتوي كل منهما على عدد كروموسومات أقل، أو أكبر من العدد النصفي للكروموسومات؟\n\n## Explanatory Content: الانقسام المنصف\n\nينتج عن الانقسام المنصف لخلية تناسلية أربع خلايا، تحتوي كل منها على نصف العدد الأصلي من الكروموسومات في الخلية الأم وتسمى غاميتات، ويسهم هذا النوع من الانقسام في ثبات عدد الكروموسومات في خلايا النوع الواحد من الكائنات الحية.\n\n## Figure Information: النموذج العددي للانقسام المنصف\n\n**خلية واحدة: 46 كروموسومًا**\n\n↓\n\n**خليتان: 23 كروموسومًا في كل خلية**\n\n↓\n\n**أربع خلايا: 23 كروموسومًا في كل خلية**\n\n---",
+      "metadata": {
+        "schema_version": "2.0.0",
+        "provenance": {
+          "chunk_id": "C09",
+          "curriculum": "Palestinian Curriculum",
+          "grade_level": 8,
+          "subject": "العلوم والحياة",
+          "lesson_number": 3,
+          "lesson_title_ar": "انقسام الخلايا",
+          "page_numbers": [
+            28
+          ],
+          "source_unit_ids": [
+            "p28_u01",
+            "p28_u02",
+            "p28_u03",
+            "p28_u04",
+            "p28_u05",
+            "p28_u06",
+            "p28_u07",
+            "p28_u08",
+            "p28_u09"
+          ],
+          "content_types": [
+            "activity",
+            "visual_information",
+            "question",
+            "explanation"
+          ],
+          "source_document_id": "palestinian_grade8_science_lesson3_pages23_29",
+          "topic_label": "Meiosis",
+          "language": "ar"
+        },
+        "pedagogical": {
+          "curriculum_coverage_levels": [
+            "basic",
+            "intermediate",
+            "advanced"
+          ],
+          "core_concepts": [
+            "الانقسام المنصف",
+            "الغاميتات"
+          ],
+          "objective_refs": []
+        },
+        "retrieval_rules": {
+          "dependencies": [
+            {
+              "chunk_id": "C04",
+              "relation": "optional_concept_context",
+              "required": false
+            }
+          ],
+          "has_visual_data": true,
+          "visual_source_unit_ids": [
+            "p28_u02"
+          ],
+          "visual_asset_refs": [],
+          "visual_representation": "text_description"
+        },
+        "scientific_entities": {
+          "chromosome_counts": {
+            "الخلية الأم في المثال": 46,
+            "الخلايا الناتجة في المثال": 23
+          },
+          "chromosome_pair_numbers": [],
+          "numerical_formulas": [
+            "46 -> (23 + 23) -> (23 + 23 + 23 + 23)"
+          ],
+          "scientific_review": {
+            "status": "not_reviewed",
+            "issue_ids": []
+          }
+        }
+      }
+    },
+    {
+      "node_id": "C10",
+      "text": "## Explanatory Content: متلازمة داون وقصة نجاح فلسطينية\n\nهبة الشرفا فتاة فلسطينية من مدينة غزة، مصابة بمتلازمة داون، حصلت على وسام معلمة للمرحلة الأساسية؛ لإسهامها في تعليم الطلبة في جمعية \"الحق في الحياة\"، مع أنها لم تكمل دراستها، إلا أنها استطاعت أن تكون عضوًا فاعلًا في المجتمع، وتركت أثرًا إيجابيًا في تعليم ذوي صعوبات التعلم.\n\nإن عدد الكروموسومات في أنوية خلايا الكائن الحي ثابت، وأي تغير في عددها، نقص أو زيادة، يحدث تغيرًا في صفات الكائن الحي وهو ما يسمى بالطفرة ففي كل خلية من\n\n\n---",
+      "metadata": {
+        "schema_version": "2.0.0",
+        "provenance": {
+          "chunk_id": "C10",
+          "curriculum": "Palestinian Curriculum",
+          "grade_level": 8,
+          "subject": "العلوم والحياة",
+          "lesson_number": 3,
+          "lesson_title_ar": "انقسام الخلايا",
+          "page_numbers": [
+            28
+          ],
+          "source_unit_ids": [
+            "p28_u11",
+            "p28_u12"
+          ],
+          "content_types": [
+            "explanation"
+          ],
+          "source_document_id": "palestinian_grade8_science_lesson3_pages23_29",
+          "topic_label": "Chromosome Number Change and Curriculum Context",
+          "language": "ar"
+        },
+        "pedagogical": {
+          "curriculum_coverage_levels": [
+            "basic",
+            "intermediate",
+            "advanced"
+          ],
+          "core_concepts": [
+            "تغير عدد الكروموسومات",
+            "متلازمة داون"
+          ],
+          "objective_refs": []
+        },
+        "retrieval_rules": {
+          "dependencies": [
+            {
+              "chunk_id": "C11",
+              "relation": "source_sentence_continues_in",
+              "required": true,
+              "source_unit_ids": [
+                "p28_u12",
+                "p29_u01"
+              ]
+            }
+          ],
+          "has_visual_data": false,
+          "visual_source_unit_ids": [],
+          "visual_asset_refs": [],
+          "visual_representation": "none"
+        },
+        "scientific_entities": {
+          "chromosome_counts": {},
+          "chromosome_pair_numbers": [],
+          "numerical_formulas": [],
+          "scientific_review": {
+            "status": "not_reviewed",
+            "issue_ids": []
+          }
+        }
+      }
+    },
+    {
+      "node_id": "C11",
+      "text": "## Explanatory Content: متلازمة داون\n\n\nخلايا الإنسان العادي (46) كروموسومًا، ولكن يولد بعض الأطفال وعندهم زيادة كروموسوم فتحتوي كل خلية من خلايا الجسم على (47) كروموسومًا، ويطلق عليهم متلازمة داون.\n\n## Explanatory Content: الصفات المظهرية المذكورة في المصدر\n\n1. وجود ثنية إضافية في جفن العين.\n2. قصر القامة.\n3. رؤوسهم منبسطة.\n4. جبهتهم بارزة.\n5. لسانهم كبير الحجم.\n6. ذوو أيد وأقدام قصيرة.\n7. يعاني معظمهم من صعوبات في التعلم.\n\n## Questions\n\n1. هل التقيت شخصًا مصابًا بمتلازمة داون؟\n2. كيف يمكنك مساعدتهم في الاندماج في المجتمع؟\n\n## Activity 7: التعلم بالحياة\n\n### Questions\n\n1. تحدث عن بعض حالات متلازمة داون، التي لها دور إيجابي في المجتمع.\n2. لاحظ خريطة الكروموسومات لشخص مصاب بمتلازمة داون. استنتج سبب الاختلاف، ومكانه.\n\n### Figure Information: خريطة كروموسومات متلازمة داون\n\nتُظهر خريطة الكروموسومات وجود كروموسوم ثالث ضمن الزوج الكروموسومي الجسمي رقم (21).\n\n\n## Explanatory Content: التغير في عدد الكروموسومات\n\nلعلك لاحظت من الشكل المجاور أن الزوج الكروموسومي الجسمي (21) أضيف إليه كروموسوم ثالث، وسبب هذا حدوث خلل أثناء الانقسام المنصف في الخلايا الجنسية عند أحد الآباء، فينتج غاميت يحتوي على (24) كروموسومًا، وعندما يخصب بغاميت يحتوي العدد الطبيعي (23) كروموسومًا، ينتج فرد تحتوي خلاياه على (47) كروموسومًا.\n\nوقد تم اكتشاف أول حالة عام 1866م، من قبل العالم (لانغدون داون).",
+      "metadata": {
+        "schema_version": "2.0.0",
+        "provenance": {
+          "chunk_id": "C11",
+          "curriculum": "Palestinian Curriculum",
+          "grade_level": 8,
+          "subject": "العلوم والحياة",
+          "lesson_number": 3,
+          "lesson_title_ar": "انقسام الخلايا",
+          "page_numbers": [
+            29
+          ],
+          "source_unit_ids": [
+            "p29_u01",
+            "p29_u02",
+            "p29_u03",
+            "p29_u04",
+            "p29_u05",
+            "p29_u06",
+            "p29_u07",
+            "p29_u08",
+            "p29_u09",
+            "p29_u10"
+          ],
+          "content_types": [
+            "explanation",
+            "question",
+            "activity",
+            "visual_information"
+          ],
+          "source_document_id": "palestinian_grade8_science_lesson3_pages23_29",
+          "topic_label": "Down Syndrome and Chromosome 21",
+          "language": "ar"
+        },
+        "pedagogical": {
+          "curriculum_coverage_levels": [
+            "basic",
+            "intermediate",
+            "advanced"
+          ],
+          "core_concepts": [
+            "متلازمة داون",
+            "الكروموسوم 21",
+            "الانقسام المنصف"
+          ],
+          "objective_refs": []
+        },
+        "retrieval_rules": {
+          "dependencies": [
+            {
+              "chunk_id": "C10",
+              "relation": "source_sentence_continues_from",
+              "required": true,
+              "source_unit_ids": [
+                "p28_u12",
+                "p29_u01"
+              ]
+            }
+          ],
+          "has_visual_data": true,
+          "visual_source_unit_ids": [
+            "p29_u08"
+          ],
+          "visual_asset_refs": [],
+          "visual_representation": "text_description"
+        },
+        "scientific_entities": {
+          "chromosome_counts": {
+            "خلية الإنسان في المثال": 46,
+            "خلية مصاب بمتلازمة داون في المثال": 47,
+            "الغاميت غير الطبيعي في المثال": 24,
+            "الغاميت الطبيعي في المثال": 23
+          },
+          "chromosome_pair_numbers": [
+            21
+          ],
+          "numerical_formulas": [
+            "24 + 23 -> 47"
+          ],
+          "scientific_review": {
+            "status": "not_reviewed",
+            "issue_ids": []
+          }
+        }
+      }
+    }
+  ],
+  "queries": [
+    {
+      "query_id": "Q01",
+      "query_ar": "ماذا يحدث للمادة الوراثية DNA قبل انقسام الخلية؟",
+      "query_type": "Direct/Narrow",
+      "expected_curriculum_content": [
+        "تتضاعف مادة الوراثة DNA قبل البدء بعملية الانقسام."
+      ]
+    },
+    {
+      "query_id": "Q02",
+      "query_ar": "مم يتكون الكروموسوم المتضاعف وكيف يرتبط مكوناه؟",
+      "query_type": "Direct/Narrow",
+      "expected_curriculum_content": [
+        "يتكون الكروموسوم المتضاعف من كروماتيدين.",
+        "يرتبط الكروماتيدان بنقطة تسمى السنترومير."
+      ]
+    },
+    {
+      "query_id": "Q03",
+      "query_ar": "ما نوع الانقسام المرتبط بالخلايا الجسمية وما نتيجته؟",
+      "query_type": "Direct/Relational",
+      "expected_curriculum_content": [
+        "تنقسم الخلايا الجسمية بطريقة الانقسام المتساوي.",
+        "ينتج عن الانقسام المتساوي خليتان ابنتان.",
+        "تحتوي الخليتان الناتجتان على نفس عدد كروموسومات الخلية الأم."
+      ]
+    },
+    {
+      "query_id": "Q04",
+      "query_ar": "ماذا يحدث للخلية في الطور البيني؟",
+      "query_type": "Direct/Narrow",
+      "expected_curriculum_content": [
+        "تنمو الخلية.",
+        "يزداد حجم الخلية.",
+        "تتضاعف كمية المادة الوراثية DNA."
+      ]
+    },
+    {
+      "query_id": "Q05",
+      "query_ar": "ماذا يحدث للكروماتيدات الشقيقة في الدور الانفصالي؟",
+      "query_type": "Direct/Narrow",
+      "expected_curriculum_content": [
+        "تتباعد الكروماتيدات الشقيقة.",
+        "يحدث التباعد بفعل انكماش خيوط المغزل.",
+        "يتجه كل منها إلى قطب."
+      ]
+    },
+    {
+      "query_id": "Q06",
+      "query_ar": "ما مراحل الانقسام المتساوي وما الذي يحدث خلالها حتى تنتج خليتان؟",
+      "query_type": "Sequence/Multi-part",
+      "expected_curriculum_content": [
+        "الدور التمهيدي.",
+        "الدور الاستوائي.",
+        "الدور الانفصالي.",
+        "الدور النهائي.",
+        "انقسام السيتوبلازم.",
+        "تنتج خليتان متماثلتان.",
+        "تحتوي كل خلية ناتجة على نفس عدد كروموسومات الخلية الأم."
+      ]
+    },
+    {
+      "query_id": "Q07",
+      "query_ar": "ما أوجه الاختلاف بين انقسام الخلية النباتية والخلية الحيوانية كما يعرضها المنهج؟",
+      "query_type": "Comparison",
+      "expected_curriculum_content": [
+        "يظهر في انقسام الخلية النباتية تكون الصفيحة الوسطى.",
+        "يظهر في انقسام الخلية الحيوانية تخصر الغشاء."
+      ]
+    },
+    {
+      "query_id": "Q08",
+      "query_ar": "ما نتيجة الانقسام المنصف من حيث عدد الخلايا وعدد الكروموسومات؟",
+      "query_type": "Direct/Narrow",
+      "expected_curriculum_content": [
+        "ينتج أربع خلايا.",
+        "تحتوي كل خلية ناتجة على نصف العدد الأصلي من الكروموسومات في الخلية الأم."
+      ]
+    },
+    {
+      "query_id": "Q09",
+      "query_ar": "ما العلاقة بين الخلايا الجسمية والخلايا التناسلية ونوع الانقسام الذي يحدث في كل منها؟",
+      "query_type": "Relational/Comparison",
+      "expected_curriculum_content": [
+        "الخلايا الجسمية تنقسم بطريقة الانقسام المتساوي.",
+        "الخلايا التناسلية تنقسم بطريقة الانقسام المنصف.",
+        "الانقسام المنصف في الخلايا التناسلية ينتج الغاميتات."
+      ]
+    },
+    {
+      "query_id": "Q10",
+      "query_ar": "كيف يمكن أن يؤدي خلل أثناء الانقسام المنصف إلى وجود 47 كروموسومًا؟",
+      "query_type": "Causal/Multi-step",
+      "expected_curriculum_content": [
+        "يحدث خلل أثناء الانقسام المنصف في الخلايا الجنسية.",
+        "قد ينتج غاميت يحتوي على 24 كروموسومًا.",
+        "يتحد مع غاميت طبيعي يحتوي على 23 كروموسومًا.",
+        "ينتج عن ذلك 47 كروموسومًا."
+      ]
+    },
+    {
+      "query_id": "Q11",
+      "query_ar": "ما الفرق بين نواتج الانقسام المتساوي والانقسام المنصف من حيث عدد الخلايا وعدد الكروموسومات؟",
+      "query_type": "Comparison/Multi-concept",
+      "expected_curriculum_content": [
+        "الانقسام المتساوي ينتج خليتين.",
+        "الخليتان الناتجتان عن الانقسام المتساوي تحتويان على نفس عدد كروموسومات الخلية الأم.",
+        "الانقسام المنصف ينتج أربع خلايا.",
+        "كل خلية ناتجة عن الانقسام المنصف تحتوي على نصف العدد الأصلي من كروموسومات الخلية الأم."
+      ]
+    },
+    {
+      "query_id": "Q12",
+      "query_ar": "ما عدد الكروموسومات في خلايا الإنسان العادي وما العدد الموجود في متلازمة داون؟",
+      "query_type": "Direct/Comparison",
+      "expected_curriculum_content": [
+        "خلايا الإنسان العادي تحتوي على 46 كروموسومًا.",
+        "خلايا المصاب بمتلازمة داون تحتوي على 47 كروموسومًا."
+      ]
+    }
+  ]
+}
