@@ -1,144 +1,158 @@
 
 import json
-import re
 from pathlib import Path
+from functools import lru_cache
+
+import numpy as np
+import faiss
+
+from sentence_transformers import SentenceTransformer
+from sklearn.feature_extraction.text import TfidfVectorizer
 
 
 DATA_PATH = Path(__file__).resolve().parent / "rag_source_data.json"
 
-# Common Arabic words that add little value to keyword retrieval.
-STOPWORDS = {
-    "في", "من", "إلى", "على", "عن", "ما", "ماذا", "كيف",
-    "هل", "هو", "هي", "هذا", "هذه", "ذلك", "التي",
-    "الذي", "و", "أو", "ثم", "أن", "إن", "كل", "عند",
-    "عدد", "بين", "مع", "خلال", "بعد", "قبل"
-}
+MODEL_NAME = (
+    "sentence-transformers/"
+    "paraphrase-multilingual-MiniLM-L12-v2"
+)
+
+RRF_K = 60
 
 
+@lru_cache(maxsize=1)
 def load_knowledge_base():
-    """Load curriculum chunks from the JSON knowledge base."""
     with DATA_PATH.open("r", encoding="utf-8") as file:
         data = json.load(file)
 
-    nodes = data.get("nodes", [])
+    nodes = data["nodes"]
 
     if not nodes:
-        raise ValueError("No curriculum nodes found in the JSON file.")
+        raise ValueError("Knowledge base is empty.")
 
     return nodes
 
 
-def normalize_arabic(text):
-    """Normalize Arabic text for basic keyword matching."""
-    text = str(text).lower()
+@lru_cache(maxsize=1)
+def build_retrieval_index():
+    nodes = load_knowledge_base()
 
-    # Remove Arabic diacritics.
-    text = re.sub(r"[\u064b-\u065f\u0670]", "", text)
+    texts = [node["text"] for node in nodes]
 
-    # Normalize common letter variants.
-    text = re.sub(r"[إأآٱ]", "ا", text)
-    text = text.replace("ى", "ي")
-    text = text.replace("ؤ", "و")
-    text = text.replace("ئ", "ي")
-    text = text.replace("ـ", "")
+    # Semantic embeddings
+    model = SentenceTransformer(MODEL_NAME)
 
-    # Keep Arabic letters, Latin letters, and numbers.
-    text = re.sub(r"[^\u0621-\u064aa-z0-9\s]", " ", text)
+    embeddings = model.encode(
+        texts,
+        convert_to_numpy=True,
+        normalize_embeddings=True
+    ).astype("float32")
 
-    return " ".join(text.split())
+    dimension = embeddings.shape[1]
 
+    index = faiss.IndexFlatIP(dimension)
+    index.add(embeddings)
 
-def tokenize(text):
-    """Extract useful search tokens."""
-    normalized = normalize_arabic(text)
+    # Character-level lexical retrieval
+    vectorizer = TfidfVectorizer(
+        analyzer="char",
+        ngram_range=(2, 5),
+        sublinear_tf=True
+    )
 
-    return [
-        word
-        for word in normalized.split()
-        if len(word) > 1 and word not in STOPWORDS
-    ]
+    tfidf_matrix = vectorizer.fit_transform(texts)
 
-
-def calculate_relevance(query, node):
-    """Calculate a simple keyword-overlap relevance score."""
-    query_tokens = set(tokenize(query))
-
-    if not query_tokens:
-        return 0.0
-
-    content = node.get("text", "")
-
-    metadata = node.get("metadata", {})
-    provenance = metadata.get("provenance", {})
-    pedagogical = metadata.get("pedagogical", {})
-
-    topic = provenance.get("topic_label", "")
-    concepts = pedagogical.get("core_concepts", [])
-
-    content_tokens = set(tokenize(content))
-    metadata_tokens = set(tokenize(
-        topic + " " + " ".join(concepts)
-    ))
-
-    content_matches = len(query_tokens & content_tokens)
-    metadata_matches = len(query_tokens & metadata_tokens)
-
-    # Give extra weight to matching curriculum concepts.
-    return float(content_matches + 2 * metadata_matches)
+    return nodes, model, index, vectorizer, tfidf_matrix
 
 
 def retrieve_chunks(query, top_k=3):
-    """
-    Retrieve the most relevant curriculum chunks.
-
-    Returns a list with source IDs, page numbers,
-    relevance scores, and source text.
-    """
     if not isinstance(top_k, int) or top_k < 1:
         raise ValueError("top_k must be a positive integer.")
 
-    if not query or not query.strip():
+    if not isinstance(query, str) or not query.strip():
         return []
 
-    nodes = load_knowledge_base()
+    (
+        nodes,
+        model,
+        index,
+        vectorizer,
+        tfidf_matrix
+    ) = build_retrieval_index()
+
+    count = len(nodes)
+
+    # 1. Semantic retrieval with FAISS
+    query_embedding = model.encode(
+        [query],
+        convert_to_numpy=True,
+        normalize_embeddings=True
+    ).astype("float32")
+
+    _, semantic_indices = index.search(
+        query_embedding,
+        count
+    )
+
+    semantic_ranking = semantic_indices[0].tolist()
+
+    # 2. Lexical retrieval with TF-IDF
+    query_tfidf = vectorizer.transform([query])
+
+    lexical_scores = (
+        tfidf_matrix @ query_tfidf.T
+    ).toarray().ravel()
+
+    lexical_ranking = np.argsort(
+        -lexical_scores,
+        kind="stable"
+    ).tolist()
+
+    # 3. Reciprocal Rank Fusion
+    fused_scores = {}
+
+    for ranking in [semantic_ranking, lexical_ranking]:
+        for rank, node_index in enumerate(ranking, start=1):
+            fused_scores[node_index] = (
+                fused_scores.get(node_index, 0.0)
+                + 1.0 / (RRF_K + rank)
+            )
+
+    sorted_indices = sorted(
+        fused_scores,
+        key=lambda i: (-fused_scores[i], i)
+    )
+
     results = []
 
-    for node in nodes:
-        score = calculate_relevance(query, node)
-
-        if score <= 0:
-            continue
-
+    for i in sorted_indices[:top_k]:
+        node = nodes[i]
         metadata = node.get("metadata", {})
         provenance = metadata.get("provenance", {})
 
         results.append({
-            "node_id": node.get("node_id"),
-            "text": node.get("text", ""),
-            "page_numbers": provenance.get("page_numbers", []),
-            "score": score,
+            "node_id": node["node_id"],
+            "text": node["text"],
+            "page_numbers": provenance.get(
+                "page_numbers", []
+            ),
+            "score": fused_scores[i],
             "metadata": metadata
         })
 
-    results.sort(
-        key=lambda item: (-item["score"], item["node_id"] or "")
-    )
-
-    return results[:top_k]
+    return results
 
 
 if __name__ == "__main__":
-    test_query = "ماذا يحدث للمادة الوراثية DNA قبل انقسام الخلية؟"
+    question = (
+        "ماذا يحدث للمادة الوراثية DNA "
+        "قبل انقسام الخلية؟"
+    )
 
-    print("Test query:", test_query)
-
-    results = retrieve_chunks(test_query, top_k=3)
+    results = retrieve_chunks(question, top_k=3)
 
     for result in results:
         print(
-            f"Chunk: {result['node_id']} | "
-            f"Pages: {result['page_numbers']} | "
-            f"Score: {result['score']}"
+            result["node_id"],
+            result["score"]
         )
-        print(result["text"][:250])
-        print("-" * 50)
