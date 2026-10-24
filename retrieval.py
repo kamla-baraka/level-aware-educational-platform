@@ -111,12 +111,21 @@ def retrieve_chunks(query, top_k=3):
     # 3. Reciprocal Rank Fusion
     fused_scores = {}
 
-    for ranking in [semantic_ranking, lexical_ranking]:
-        for rank, node_index in enumerate(ranking, start=1):
-            fused_scores[node_index] = (
-                fused_scores.get(node_index, 0.0)
-                + 1.0 / (RRF_K + rank)
-            )
+    
+# Selected configuration from retrieval evaluation
+SEMANTIC_WEIGHT = 0.2
+LEXICAL_WEIGHT = 0.8
+
+for weight, ranking in [
+    (SEMANTIC_WEIGHT, semantic_ranking),
+    (LEXICAL_WEIGHT, lexical_ranking)
+]:
+    for rank, node_index in enumerate(ranking, start=1):
+        fused_scores[node_index] = (
+            fused_scores.get(node_index, 0.0)
+            + weight / (RRF_K + rank)
+        )
+
 
     sorted_indices = sorted(
         fused_scores,
