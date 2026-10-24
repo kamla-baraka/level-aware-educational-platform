@@ -10,6 +10,48 @@ st.set_page_config(
     layout="wide"
 )
 
+st.markdown(
+    """
+    <style>
+    /* Arabic right-to-left layout */
+    [data-testid="stMainBlockContainer"] {
+        direction: rtl;
+        text-align: right;
+    }
+
+    /* Input fields */
+    [data-testid="stTextInput"] {
+        direction: rtl;
+        text-align: right;
+    }
+
+    [data-testid="stTextInput"] input {
+        direction: rtl;
+        text-align: right;
+    }
+
+    /* Multiple-choice questions */
+    [data-testid="stRadio"] {
+        direction: rtl;
+        text-align: right;
+    }
+
+    [data-testid="stRadio"] [role="radiogroup"] {
+        direction: rtl;
+        align-items: flex-start;
+    }
+
+    /* Buttons */
+    [data-testid="stButton"],
+    [data-testid="stFormSubmitButton"] {
+        direction: rtl;
+        text-align: right;
+    }
+    </style>
+    """,
+    unsafe_allow_html=True
+)
+
 st.title("📚 Level-Aware Educational Platform")
 
 st.write(
