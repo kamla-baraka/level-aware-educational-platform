@@ -19,6 +19,10 @@ MODEL_NAME = (
 
 RRF_K = 60
 
+# Evaluated hybrid retrieval configuration
+SEMANTIC_WEIGHT = 0.2
+LEXICAL_WEIGHT = 0.8
+
 
 @lru_cache(maxsize=1)
 def load_knowledge_base():
@@ -39,7 +43,7 @@ def build_retrieval_index():
 
     texts = [node["text"] for node in nodes]
 
-    # Semantic embeddings
+    # 1. Semantic embeddings
     model = SentenceTransformer(MODEL_NAME)
 
     embeddings = model.encode(
@@ -53,7 +57,7 @@ def build_retrieval_index():
     index = faiss.IndexFlatIP(dimension)
     index.add(embeddings)
 
-    # Character-level lexical retrieval
+    # 2. Character-level lexical retrieval
     vectorizer = TfidfVectorizer(
         analyzer="char",
         ngram_range=(2, 5),
@@ -108,25 +112,20 @@ def retrieve_chunks(query, top_k=3):
         kind="stable"
     ).tolist()
 
-    # 3. Reciprocal Rank Fusion
+    # 3. Weighted Reciprocal Rank Fusion
     fused_scores = {}
 
-    
-# Selected configuration from retrieval evaluation
-SEMANTIC_WEIGHT = 0.2
-LEXICAL_WEIGHT = 0.8
+    for weight, ranking in [
+        (SEMANTIC_WEIGHT, semantic_ranking),
+        (LEXICAL_WEIGHT, lexical_ranking)
+    ]:
+        for rank, node_index in enumerate(ranking, start=1):
+            fused_scores[node_index] = (
+                fused_scores.get(node_index, 0.0)
+                + weight / (RRF_K + rank)
+            )
 
-for weight, ranking in [
-    (SEMANTIC_WEIGHT, semantic_ranking),
-    (LEXICAL_WEIGHT, lexical_ranking)
-]:
-    for rank, node_index in enumerate(ranking, start=1):
-        fused_scores[node_index] = (
-            fused_scores.get(node_index, 0.0)
-            + weight / (RRF_K + rank)
-        )
-
-
+    # 4. Sort fused retrieval results
     sorted_indices = sorted(
         fused_scores,
         key=lambda i: (-fused_scores[i], i)
