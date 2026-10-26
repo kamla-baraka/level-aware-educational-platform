@@ -1,6 +1,8 @@
 import streamlit as st
 
 from assessment import QUESTIONS, calculate_score, determine_level
+from retrieval import load_knowledge_base
+from generation import generate_educational_content
 
 st.set_page_config(
     page_title="Level-Aware Educational Platform",
@@ -135,12 +137,55 @@ else:
     st.divider()
     st.header("📚 المحتوى التعليمي")
 
-    if st.button("إنشاء المحتوى التعليمي المناسب لمستواي"):
-        st.info(
-            f"الطالب: {student_name.strip() or 'Student'} | "
-            f"الدرس: انقسام الخلايا | المستوى: {level}"
+   
+    # Keep generated content available across Streamlit reruns.
+    if "generated_content" not in st.session_state:
+        st.session_state.generated_content = None
+
+    if "generated_level" not in st.session_state:
+        st.session_state.generated_level = None
+
+    if st.session_state.generated_level != level:
+        st.session_state.generated_content = None
+
+    if st.button(
+        "إنشاء المحتوى التعليمي المناسب لمستواي",
+        type="primary",
+    ):
+        with st.spinner(
+            "جارٍ استرجاع محتوى المنهاج وتوليد الحزمة التعليمية..."
+        ):
+            try:
+                # Use all curriculum chunks to cover the full lesson.
+                curriculum_chunks = load_knowledge_base()
+
+                educational_content = generate_educational_content(
+                    level=level,
+                    retrieved_chunks=curriculum_chunks,
+                )
+
+                st.session_state.generated_content = (
+                    educational_content
+                )
+                st.session_state.generated_level = level
+
+            except Exception:
+                st.session_state.generated_content = None
+                st.error(
+                    "تعذر إنشاء المحتوى التعليمي حاليًا. "
+                    "يرجى المحاولة لاحقًا."
+                )
+
+    if st.session_state.generated_content:
+        st.success("تم إنشاء المحتوى التعليمي بنجاح!")
+
+        st.markdown(
+            st.session_state.generated_content
         )
-        st.warning(
-            "سيتم ربط توليد المحتوى التعليمي بنظام RAG "
-            "في مرحلة التطوير القادمة."
+
+        st.download_button(
+            label="تحميل المحتوى التعليمي",
+            data=st.session_state.generated_content,
+            file_name=f"cell_division_{level.lower()}.md",
+            mime="text/markdown",
         )
