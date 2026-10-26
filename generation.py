@@ -176,7 +176,7 @@ def generate_educational_content(level, retrieved_chunks):
             },
         ],
         temperature=0.2,
-        max_completion_tokens=6000,
+        max_completion_tokens=900,
     )
 
     content = response.choices[0].message.content
