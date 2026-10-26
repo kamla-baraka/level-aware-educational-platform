@@ -169,12 +169,10 @@ else:
                 )
                 st.session_state.generated_level = level
 
-            except Exception:
+                        except Exception as e:
                 st.session_state.generated_content = None
-                st.error(
-                    "تعذر إنشاء المحتوى التعليمي حاليًا. "
-                    "يرجى المحاولة لاحقًا."
-                )
+                st.error("حدث خطأ أثناء توليد المحتوى التعليمي.")
+                st.exception(e)
 
     if st.session_state.generated_content:
         st.success("تم إنشاء المحتوى التعليمي بنجاح!")
