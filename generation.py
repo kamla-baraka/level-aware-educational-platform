@@ -166,7 +166,7 @@ def generate_part(client, level, part, context):
             {"role": "user", "content": user_prompt},
         ],
         temperature=0.2,
-        max_completion_tokens=850,
+        max_completion_tokens=950,
     )
 
     choice = response.choices[0]
