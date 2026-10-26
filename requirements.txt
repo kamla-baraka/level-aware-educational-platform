@@ -4,3 +4,4 @@ sentence-transformers>=3.0,<6
 faiss-cpu>=1.9,<2
 scikit-learn>=1.5,<2
 numpy>=1.26,<3
+groq>=0.11,<1
