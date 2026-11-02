@@ -6,6 +6,7 @@ from functools import lru_cache
 import numpy as np
 import faiss
 
+from llama_index.core.schema import TextNode
 from sentence_transformers import SentenceTransformer
 from sklearn.feature_extraction.text import TfidfVectorizer
 
@@ -19,7 +20,7 @@ MODEL_NAME = (
 
 RRF_K = 60
 
-# Evaluated hybrid retrieval configuration
+# Previously evaluated hybrid retrieval configuration
 SEMANTIC_WEIGHT = 0.2
 LEXICAL_WEIGHT = 0.8
 
@@ -39,9 +40,19 @@ def load_knowledge_base():
 
 @lru_cache(maxsize=1)
 def build_retrieval_index():
-    nodes = load_knowledge_base()
+    source_nodes = load_knowledge_base()
 
-    texts = [node["text"] for node in nodes]
+    # LlamaIndex: represent curriculum chunks as TextNodes
+    llama_nodes = [
+        TextNode(
+            id_=node["node_id"],
+            text=node["text"],
+            metadata=node.get("metadata", {})
+        )
+        for node in source_nodes
+    ]
+
+    texts = [node.text for node in llama_nodes]
 
     # 1. Semantic embeddings
     model = SentenceTransformer(MODEL_NAME)
@@ -66,7 +77,13 @@ def build_retrieval_index():
 
     tfidf_matrix = vectorizer.fit_transform(texts)
 
-    return nodes, model, index, vectorizer, tfidf_matrix
+    return (
+        llama_nodes,
+        model,
+        index,
+        vectorizer,
+        tfidf_matrix
+    )
 
 
 def retrieve_chunks(query, top_k=3):
@@ -77,14 +94,14 @@ def retrieve_chunks(query, top_k=3):
         return []
 
     (
-        nodes,
+        llama_nodes,
         model,
         index,
         vectorizer,
         tfidf_matrix
     ) = build_retrieval_index()
 
-    count = len(nodes)
+    count = len(llama_nodes)
 
     # 1. Semantic retrieval with FAISS
     query_embedding = model.encode(
@@ -134,13 +151,13 @@ def retrieve_chunks(query, top_k=3):
     results = []
 
     for i in sorted_indices[:top_k]:
-        node = nodes[i]
-        metadata = node.get("metadata", {})
+        node = llama_nodes[i]
+        metadata = node.metadata
         provenance = metadata.get("provenance", {})
 
         results.append({
-            "node_id": node["node_id"],
-            "text": node["text"],
+            "node_id": node.node_id,
+            "text": node.text,
             "page_numbers": provenance.get(
                 "page_numbers", []
             ),
