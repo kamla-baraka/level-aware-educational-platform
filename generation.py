@@ -5,7 +5,7 @@ import time
 import streamlit as st
 from groq import Groq
 from retrieval import retrieve_chunks
-
+from quality_check import validate_educational_content
 
 MODEL_NAME = "openai/gpt-oss-20b"
 
@@ -289,7 +289,16 @@ def generate_educational_content(level, retrieved_chunks):
         if index < len(PARTS) - 1:
             time.sleep(REQUEST_DELAY_SECONDS)
 
-    return (
+        content = (
         "# انقسام الخلايا\n\n"
         + "\n\n".join(generated_parts)
     )
+
+    is_valid, issues = validate_educational_content(content)
+
+    if not is_valid:
+        st.session_state["content_quality_issues"] = issues
+    else:
+        st.session_state["content_quality_issues"] = []
+
+    return content
