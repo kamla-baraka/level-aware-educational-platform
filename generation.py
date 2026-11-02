@@ -7,6 +7,7 @@ from groq import Groq
 from retrieval import retrieve_chunks
 from quality_check import validate_educational_content
 
+
 MODEL_NAME = "openai/gpt-oss-20b"
 
 # Keep requests small for free-tier rate limits.
@@ -300,6 +301,7 @@ def generate_educational_content(level, retrieved_chunks):
     client = Groq(api_key=api_key)
     generated_parts = []
 
+    # Generate all five parts.
     for index, part in enumerate(PARTS):
         context = get_context(part, retrieved_chunks)
 
@@ -317,14 +319,17 @@ def generate_educational_content(level, retrieved_chunks):
 
         generated_parts.append(result)
 
+        # Wait between requests to respect rate limits.
         if index < len(PARTS) - 1:
             time.sleep(REQUEST_DELAY_SECONDS)
 
-        content = (
+    # Combine the package only after all parts are generated.
+    content = (
         "# انقسام الخلايا\n\n"
         + "\n\n".join(generated_parts)
     )
 
+    # Research mode: record issues without hiding content.
     is_valid, issues = validate_educational_content(content)
 
     if not is_valid:
