@@ -4,7 +4,7 @@ import streamlit as st
 from assessment import QUESTIONS, calculate_score, determine_level
 from retrieval import load_knowledge_base
 from generation import generate_educational_content
-
+from quality_check import validate_educational_content
 
 st.set_page_config(
     page_title="Level-Aware Educational Platform",
@@ -269,10 +269,12 @@ else:
             st.session_state.generated_content
         )
 
-        # Display automatic quality-check results
-        quality_issues = st.session_state.get(
-            "content_quality_issues", []
+         # Revalidate the saved package without calling Groq
+        is_valid, quality_issues = validate_educational_content(
+            st.session_state.generated_content
         )
+
+        st.session_state["content_quality_issues"] = quality_issues
 
         if quality_issues:
             st.warning(
