@@ -1,26 +1,30 @@
 
 import os
-import re
 import time
 
 import streamlit as st
 from groq import Groq
 from retrieval import retrieve_chunks
 
-MODEL_NAME = "qwen/qwen3.8-27b"
+
+MODEL_NAME = "openai/gpt-oss-20b"
+
+# Keep requests small for free-tier rate limits.
+MAX_OUTPUT_TOKENS = 900
+REQUEST_DELAY_SECONDS = 65
 
 LEVEL_INSTRUCTIONS = {
     "Basic": (
-        "لغة عربية بسيطة، جمل قصيرة، شرح خطوة بخطوة، "
-        "وأسئلة مباشرة مناسبة لطالب يحتاج إلى دعم."
+        "استخدم لغة عربية بسيطة وجملًا قصيرة، "
+        "واشرح خطوة بخطوة. اجعل الأسئلة مباشرة."
     ),
     "Intermediate": (
-        "شرح متوسط التفصيل، ربط بين المفاهيم، "
-        "وأسئلة فهم وتطبيق ومقارنة."
+        "استخدم شرحًا متوسط التفصيل، واربط المفاهيم "
+        "ببعضها. أضف أسئلة فهم وتطبيق ومقارنة."
     ),
     "Advanced": (
-        "شرح أعمق للمفاهيم نفسها، مع أسئلة تحليل "
-        "واستنتاج، دون تجاوز حدود المنهاج."
+        "قدّم شرحًا أعمق للمفاهيم نفسها، وأسئلة "
+        "تحليل واستنتاج دون تجاوز المنهاج."
     ),
 }
 
@@ -29,66 +33,103 @@ PARTS = [
         "title": "الأهداف والكروموسومات",
         "queries": [
             "عدد الكروموسومات في الكائنات الحية",
-            "تضاعف DNA وتركيب الكروموسوم والسنترومير",
+            "تضاعف DNA وتركيب الكروموسوم",
         ],
-        "sections": (
-            "## الأهداف التعليمية\n"
-            "## الكروموسومات والمادة الوراثية\n"
-            "## الطور البيني وتركيب الكروموسوم"
-        ),
         "ids": ["C01", "C02", "C03", "C05"],
+        "headings": [
+            "الأهداف التعليمية",
+            "الكروموسومات والمادة الوراثية",
+            "الطور البيني وتركيب الكروموسوم",
+        ],
+        "instruction": (
+            "اكتب 3 أهداف تعليمية، ثم شرحًا مختصرًا "
+            "للمادة الوراثية والكروموسومات والطور البيني."
+        ),
     },
     {
         "title": "الانقسام المتساوي",
         "queries": [
-            "الخلايا الجسمية والانقسام المتساوي",
-            "مراحل الانقسام المتساوي الأربع",
+            "مراحل الانقسام المتساوي",
             "انقسام السيتوبلازم في النبات والحيوان",
         ],
-        "sections": (
-            "## الانقسام المتساوي\n"
-            "## مراحل الانقسام المتساوي\n"
-            "## الفرق بين الخلية الحيوانية والنباتية"
-        ),
         "ids": ["C04", "C05", "C06", "C07", "C08"],
+        "headings": [
+            "الانقسام المتساوي",
+            "مراحل الانقسام المتساوي",
+            "الفرق بين الخلية الحيوانية والنباتية",
+        ],
+        "instruction": (
+            "اشرح أهمية الانقسام المتساوي ومراحله الأربع "
+            "والفرق بين انقسام السيتوبلازم في الخلية "
+            "الحيوانية والخلية النباتية."
+        ),
     },
     {
         "title": "الانقسام المنصف ومتلازمة داون",
         "queries": [
             "الانقسام المنصف وعدد الكروموسومات",
-            "قصة فلسطينية عن متلازمة داون",
             "متلازمة داون والكروموسوم 21",
         ],
-        "sections": (
-            "## الانقسام المنصف\n"
-            "## متلازمة داون والقصة الواردة في المنهاج"
-        ),
         "ids": ["C09", "C10", "C11"],
+        "headings": [
+            "الانقسام المنصف",
+            "متلازمة داون والقصة الواردة في المنهاج",
+        ],
+        "instruction": (
+            "اشرح الانقسام المنصف ونتيجته، ثم متلازمة "
+            "داون والقصة الواردة في المصدر C10، "
+            "مع الالتزام بالتفاصيل الموجودة في المرجع."
+        ),
     },
     {
-        "title": "الأنشطة والمراجعة",
+        "title": "المفاهيم والأمثلة",
         "queries": [
             "مقارنة الانقسام المتساوي والمنصف",
-            "مراحل انقسام الخلايا ومتلازمة داون",
+            "الكروموسومات ومراحل انقسام الخلية",
         ],
-        "sections": (
-            "## المفردات والمفاهيم الأساسية\n"
-            "## أمثلة توضيحية\n"
-            "## تمارين تدريبية\n"
-            "## أسئلة تقييم ذاتي\n"
-            "## ملخص الدرس\n"
-            "## الإجابات النموذجية"
-        ),
         "ids": [
             "C01", "C02", "C03", "C04", "C05",
-            "C06", "C07", "C08", "C09", "C10", "C11"
+            "C06", "C08", "C09", "C11"
         ],
+        "headings": [
+            "المفردات والمفاهيم الأساسية",
+            "أمثلة توضيحية",
+            "ملخص الدرس",
+        ],
+        "instruction": (
+            "اكتب 6 مفردات أساسية مع تعريفات موجزة، "
+            "ومثالين من المعلومات الموجودة في المصادر، "
+            "ثم ملخصًا من 5 نقاط."
+        ),
+    },
+    {
+        "title": "التمارين والتقييم",
+        "queries": [
+            "مراحل الانقسام المتساوي والمنصف",
+            "عدد الكروموسومات ومتلازمة داون",
+        ],
+        "ids": [
+            "C01", "C02", "C03", "C04", "C05",
+            "C06", "C08", "C09", "C10", "C11"
+        ],
+        "headings": [
+            "تمارين تدريبية",
+            "أسئلة تقييم ذاتي",
+            "الإجابات النموذجية",
+        ],
+        "instruction": (
+            "اكتب 4 تمارين مرقمة ت1 إلى ت4، "
+            "و3 أسئلة تقييم مرقمة س1 إلى س3. "
+            "ثم قدم إجابات الأسئلة السبعة في قسم "
+            "الإجابات النموذجية فقط. "
+            "اجعل الأسئلة مناسبة لمستوى الطالب."
+        ),
     },
 ]
 
 
 def get_context(part, all_chunks):
-    """Retrieve relevant chunks and ensure required topics are present."""
+    """Use retrieval and guarantee required curriculum coverage."""
     selected = {}
 
     for query in part["queries"]:
@@ -100,8 +141,6 @@ def get_context(part, all_chunks):
         for chunk in all_chunks
     }
 
-    # Coverage safeguard: include curriculum chunks
-    # required by this part even if retrieval misses them.
     for node_id in part["ids"]:
         if node_id in by_id:
             selected[node_id] = by_id[node_id]
@@ -119,54 +158,69 @@ def get_context(part, all_chunks):
 
 
 def generate_part(client, level, part, context):
+    headings = "\n".join(
+        f"## {heading}"
+        for heading in part["headings"]
+    )
+
     system_prompt = """
 أنت مساعد تعليمي لمادة العلوم والحياة للصف الثامن
 وفق المنهاج الفلسطيني.
 
-التزم بالقواعد التالية:
-- اعتمد فقط على المقاطع المرجعية المقدمة.
-- لا تخترع معلومات أو أمثلة غير موجودة في المصدر.
-- غط جميع الموضوعات المطلوبة في هذا الجزء.
+القواعد:
+- استخدم المقاطع المرجعية فقط.
+- لا تخترع معلومات أو تفاصيل غير موجودة بالمصدر.
 - استخدم لغة عربية سليمة ومصطلحات علمية دقيقة.
-- وثق المعلومات بمعرفات المقاطع مثل [C06].
+- استشهد بمعرفات المقاطع مثل [C06].
 - لا تختلق معرفات للمراجع.
-- الطور البيني مرحلة تحضيرية تسبق الانقسام المتساوي.
-- الأدوار الأربعة للانقسام المتساوي هي:
-  التمهيدي والاستوائي والانفصالي والنهائي.
+- التزم بمستوى الطالب المحدد.
+- الطور البيني يسبق الانقسام المتساوي.
+- مراحل الانقسام المتساوي:
+  التمهيدي، الاستوائي، الانفصالي، النهائي.
 - في الدور النهائي تصل الكروموسومات إلى القطبين
   ويبدأ تكوّن الغلاف النووي.
-- استخدم مصطلح السنترومير والخلايا الجسمية.
-- لا تضف تضاعف العضيات إلا إذا ذكره المصدر.
-- لا تعرض إجابات التمارين إلا في قسم الإجابات.
-- اكتب الأقسام المطلوبة فقط، دون مقدمة أو خاتمة إضافية.
+- استخدم مصطلحي السنترومير والخلايا الجسمية.
+- لا تضف تضاعف العضيات إلا إذا ورد في المصدر.
+- لا تضع إجابات الأسئلة خارج قسم الإجابات النموذجية.
+- اكتب الأقسام المطلوبة فقط وباختصار.
 """
 
     user_prompt = f"""
 الدرس: انقسام الخلايا
-مستوى الطالب: {level}
-التكيّف المطلوب: {LEVEL_INSTRUCTIONS[level]}
+المستوى: {level}
 
-هذا هو الجزء المطلوب: {part['title']}
+التكيّف:
+{LEVEL_INSTRUCTIONS[level]}
 
-اكتب الأقسام التالية بنفس العناوين:
-{part['sections']}
+المطلوب:
+{part['instruction']}
 
-اكتب شرحًا واضحًا ومتكاملًا ومختصرًا.
-في قسم الأنشطة، أنشئ 4 تمارين و3 أسئلة تقييم ذاتي،
-ثم إجاباتها في قسم الإجابات النموذجية.
+اكتب هذه العناوين بالترتيب وبدون حذف:
+{headings}
 
-المصدر:
+اكتب محتوى واضحًا ومختصرًا تحت كل عنوان.
+ابدأ مباشرة بأول عنوان.
+لا تكتب مقدمة أو خاتمة إضافية.
+
+المراجع:
 {context}
 """
 
     response = client.chat.completions.create(
         model=MODEL_NAME,
         messages=[
-            {"role": "system", "content": system_prompt},
-            {"role": "user", "content": user_prompt},
+            {
+                "role": "system",
+                "content": system_prompt,
+            },
+            {
+                "role": "user",
+                "content": user_prompt,
+            },
         ],
         temperature=0.2,
-        max_completion_tokens=950,
+        max_completion_tokens=MAX_OUTPUT_TOKENS,
+        reasoning_effort="low",
     )
 
     choice = response.choices[0]
@@ -174,7 +228,8 @@ def generate_part(client, level, part, context):
 
     if choice.finish_reason != "stop":
         raise RuntimeError(
-            f"Generation was incomplete for: {part['title']}. "
+            f"Generation was incomplete for: "
+            f"{part['title']}. "
             f"Finish reason: {choice.finish_reason}"
         )
 
@@ -183,12 +238,12 @@ def generate_part(client, level, part, context):
             f"Empty response for: {part['title']}"
         )
 
-    # Check required section headings.
-    for heading in part["sections"].splitlines():
-        heading_text = heading.replace("## ", "").strip()
-        if heading_text not in content:
+    for heading in part["headings"]:
+        required_heading = f"## {heading}"
+
+        if required_heading not in content:
             raise RuntimeError(
-                f"Missing section '{heading_text}' "
+                f"Missing section '{heading}' "
                 f"in part '{part['title']}'"
             )
 
@@ -230,9 +285,8 @@ def generate_educational_content(level, retrieved_chunks):
 
         generated_parts.append(result)
 
-        # Space requests to reduce OTPM rate-limit errors.
         if index < len(PARTS) - 1:
-            time.sleep(65)
+            time.sleep(REQUEST_DELAY_SECONDS)
 
     return (
         "# انقسام الخلايا\n\n"
