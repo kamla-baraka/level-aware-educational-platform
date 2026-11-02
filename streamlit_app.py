@@ -228,7 +228,7 @@ else:
                 # Load all curriculum chunks for full-lesson coverage
                 curriculum_chunks = load_knowledge_base()
 
-                # Generate content dynamically using Qwen
+                # Generate level-aware educational content using Groq
                 educational_content = generate_educational_content(
                     level=level,
                     retrieved_chunks=curriculum_chunks,
@@ -264,11 +264,33 @@ else:
             "📖 الحزمة التعليمية الخاصة بك"
         )
 
+        
         st.markdown(
             st.session_state.generated_content
         )
 
+        # Display automatic quality-check results
+        quality_issues = st.session_state.get(
+            "content_quality_issues", []
+        )
+
+        if quality_issues:
+            st.warning(
+                "⚠️ رصد الفحص الآلي ملاحظات على الحزمة التعليمية. "
+                "تحتاج الحزمة إلى مراجعة علمية وتربوية."
+            )
+
+            with st.expander("🔍 عرض تقرير فحص الجودة"):
+                for issue in quality_issues:
+                    st.write(f"• {issue}")
+        else:
+            st.success(
+                "✅ اجتازت الحزمة فحوصات الجودة الآلية الأولية. "
+                "ولا يغني ذلك عن المراجعة العلمية والتربوية."
+            )
+
         st.divider()
+
 
         st.download_button(
             label="📥 تحميل المحتوى التعليمي",
