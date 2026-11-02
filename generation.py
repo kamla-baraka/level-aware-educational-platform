@@ -10,7 +10,7 @@ from retrieval import retrieve_chunks
 MODEL_NAME = "openai/gpt-oss-20b"
 
 # Keep requests small for free-tier rate limits.
-MAX_OUTPUT_TOKENS = 900
+MAX_OUTPUT_TOKENS = 1200
 REQUEST_DELAY_SECONDS = 65
 
 LEVEL_INSTRUCTIONS = {
@@ -97,9 +97,10 @@ PARTS = [
             "ملخص الدرس",
         ],
         "instruction": (
-            "اكتب 6 مفردات أساسية مع تعريفات موجزة، "
-            "ومثالين من المعلومات الموجودة في المصادر، "
-            "ثم ملخصًا من 5 نقاط."
+            "اكتب 4 مفردات أساسية مع تعريفات قصيرة، "
+            "ومثالًا واحدًا من المصدر، "
+            "ثم ملخصًا من 4 نقاط قصيرة. "
+            "لا تتجاوز 180 كلمة في هذا الجزء."
         ),
     },
     {
