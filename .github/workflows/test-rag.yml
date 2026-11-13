@@ -33,3 +33,9 @@ jobs:
       - name: Test generation context coverage
         run: python test_context_coverage.py
 
+      - name: Compare generation context Top-K
+        run: python compare_context_topk.py
+
+
+
+
