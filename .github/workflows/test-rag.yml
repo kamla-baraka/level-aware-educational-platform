@@ -36,6 +36,8 @@ jobs:
       - name: Compare generation context Top-K
         run: python compare_context_topk.py
 
+      - name: Test query refinement
+        run: python test_query_refinement.py
 
 
 
