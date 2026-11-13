@@ -20,5 +20,8 @@ jobs:
       - name: Install dependencies
         run: pip install -r requirements.txt
 
-      - name: Run RAG test
+      - name: Run RAG context test
         run: python test_rag_context.py
+
+      - name: Run RAG quality evaluation
+        run: python test_retrieval_quality.py
