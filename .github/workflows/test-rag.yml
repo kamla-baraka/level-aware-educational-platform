@@ -25,3 +25,6 @@ jobs:
 
       - name: Run RAG quality evaluation
         run: python test_retrieval_quality.py
+
+      - name: Compare retrieval methods
+        run: python compare_retrieval_methods.py
