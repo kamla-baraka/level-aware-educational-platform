@@ -108,6 +108,12 @@ if "posttest_questions" not in st.session_state:
 if "posttest_result" not in st.session_state:
     st.session_state.posttest_result = None
 
+if "current_level" not in st.session_state:
+    st.session_state.current_level = None
+
+if "progress_history" not in st.session_state:
+    st.session_state.progress_history = []
+
 if "content_quality_issues" not in st.session_state:
     st.session_state.content_quality_issues = []
 
