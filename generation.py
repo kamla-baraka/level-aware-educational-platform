@@ -14,6 +14,9 @@ MODEL_NAME = "openai/gpt-oss-20b"
 MAX_OUTPUT_TOKENS = 1200
 REQUEST_DELAY_SECONDS = 65
 
+# Retrieval configuration.
+RETRIEVAL_TOP_K = 3
+
 
 LEVEL_INSTRUCTIONS = {
     "Basic": (
@@ -109,8 +112,9 @@ PARTS = [
         ],
         "instruction": (
             "اشرح الانقسام المنصف ونتيجته، ثم متلازمة "
-            "داون والقصة الواردة في المصدر C10، "
-            "مع الالتزام بالتفاصيل الموجودة في المرجع."
+            "داون والقصة الواردة في المنهاج إن ظهرت "
+            "في المقاطع المسترجعة. "
+            "لا تخترع تفاصيل غير موجودة في المراجع."
         ),
     },
     {
@@ -162,32 +166,94 @@ PARTS = [
 
 
 def get_context(part, all_chunks):
-    """Use retrieval and guarantee required curriculum coverage."""
-    selected = {}
+    """
+    Retrieve curriculum context dynamically using RAG.
 
-    for query in part["queries"]:
-        for chunk in retrieve_chunks(query, top_k=3):
-            selected[chunk["node_id"]] = chunk
+    Primary chunks are selected by the retrieval system.
+    Optional dependencies are added from chunk metadata.
+    """
 
     by_id = {
         chunk["node_id"]: chunk
         for chunk in all_chunks
     }
 
-    for node_id in part["ids"]:
-        if node_id in by_id:
+    selected = {}
+
+    # Step 1: Retrieve relevant chunks using RAG.
+    for query in part["queries"]:
+        results = retrieve_chunks(
+            query,
+            top_k=RETRIEVAL_TOP_K
+        )
+
+        for chunk in results:
+            node_id = chunk["node_id"]
+
+            if node_id not in by_id:
+                raise RuntimeError(
+                    f"Retrieved chunk {node_id} "
+                    f"is missing from the provided knowledge base."
+                )
+
             selected[node_id] = by_id[node_id]
 
+    if not selected:
+        raise RuntimeError(
+            f"No retrieved curriculum context for: "
+            f"{part['title']}"
+        )
+
+    # Step 2: Add required dependencies when declared.
+    pending = list(selected.keys())
+    visited = set()
+
+    while pending:
+        node_id = pending.pop(0)
+
+        if node_id in visited:
+            continue
+
+        visited.add(node_id)
+
+        metadata = by_id[node_id].get("metadata", {})
+        rules = metadata.get("retrieval_rules", {})
+
+        dependencies = rules.get("dependencies", [])
+
+        for dependency in dependencies:
+            if not isinstance(dependency, dict):
+                continue
+
+            if not dependency.get("required", False):
+                continue
+
+            dependency_id = dependency.get("chunk_id")
+
+            if dependency_id not in by_id:
+                raise RuntimeError(
+                    f"Missing required dependency "
+                    f"{dependency_id} for {node_id}"
+                )
+
+            if dependency_id not in selected:
+                selected[dependency_id] = by_id[dependency_id]
+                pending.append(dependency_id)
+
+    # Step 3: Preserve curriculum order.
     ordered = [
-        by_id[node_id]
-        for node_id in part["ids"]
-        if node_id in selected and node_id in by_id
+        chunk
+        for chunk in all_chunks
+        if chunk["node_id"] in selected
     ]
 
-    return "\n\n".join(
+    # Step 4: Construct grounded LLM context.
+    context = "\n\n".join(
         f"[{chunk['node_id']}]\n{chunk['text']}"
         for chunk in ordered
     )
+
+    return context
 
 
 def generate_part(client, level, part, context):
