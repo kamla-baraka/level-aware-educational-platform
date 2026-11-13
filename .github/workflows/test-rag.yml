@@ -38,6 +38,8 @@ jobs:
 
       - name: Test query refinement
         run: python test_query_refinement.py
-
+      
+      - name: Test multi-query retrieval
+        run: python test_multiquery_retrieval.py
 
 
