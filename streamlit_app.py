@@ -454,6 +454,14 @@ else:
                         "progression": progression,
                     }
 
+                    # Record each completed post-test only once.
+                    st.session_state.progress_history.append({
+                        "level": level,
+                        "score": post_score,
+                        "decision": progression["decision"],
+                        "next_level": progression["next_level"],
+                    })
+
                     st.rerun()
 
         # Display post-test results
@@ -493,6 +501,27 @@ else:
                     "وفق معيار الإتقان التجريبي."
                 )
 
+                if st.button(
+                    "الانتقال إلى المستوى التالي",
+                    type="primary",
+                    key="promote_student_button",
+                ):
+                    # Keep pre-test result and progress history intact.
+                    st.session_state.current_level = progression["next_level"]
+                    st.session_state.generated_content = None
+                    st.session_state.generated_level = None
+                    st.session_state.posttest_questions = None
+                    st.session_state.posttest_result = None
+                    st.session_state.content_quality_issues = []
+
+                    # Avoid carrying answers into the next post-test.
+                    for question_number in range(1, 11):
+                        st.session_state.pop(
+                            f"post_answer_POST_Q{question_number:02d}", None
+                        )
+
+                    st.rerun()
+
             elif progression["decision"] == "Stay":
 
                 st.info(
@@ -519,3 +548,21 @@ else:
                 "معيار الإتقان المستخدم حاليًا هو 8/10. "
                 "هذا معيار تجريبي يحتاج إلى تحقق تربوي."
             )
+
+    # Show recorded progress even after promoting to a new level.
+    if st.session_state.progress_history:
+        st.divider()
+        st.subheader("📈 سجل تقدّم الطالب")
+        for attempt_number, attempt in enumerate(
+            st.session_state.progress_history, start=1
+        ):
+            st.write(
+                f"**المحاولة {attempt_number}:** "
+                f"المستوى {attempt['level']} — "
+                f"النتيجة {attempt['score']}/10 — "
+                f"القرار {attempt['decision']}"
+            )
+        st.caption(
+            "يُحفظ السجل خلال جلسة Streamlit الحالية فقط، "
+            "وليس في قاعدة بيانات دائمة."
+        )
