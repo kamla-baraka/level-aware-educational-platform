@@ -126,6 +126,8 @@ def reset_student_data():
     st.session_state.posttest_questions = None
     st.session_state.posttest_result = None
     st.session_state.content_quality_issues = []
+    st.session_state.current_level = None
+    st.session_state.progress_history = []
 
 
 # Reset when student changes
@@ -191,6 +193,8 @@ if st.session_state.assessment_result is None:
                 "score": score,
                 "level": level,
             }
+            st.session_state.current_level = level
+            st.session_state.progress_history = []
 
             st.rerun()
 
@@ -201,7 +205,11 @@ else:
     result = st.session_state.assessment_result
 
     score = result["score"]
-    level = result["level"]
+    initial_level = result["level"]
+    level = st.session_state.current_level
+    if level is None:
+        level = initial_level
+        st.session_state.current_level = level
 
     st.success("تم إنهاء الاختبار القبلي بنجاح!")
 
@@ -219,9 +227,13 @@ else:
 
     with col2:
         st.metric(
-            "مستواك التعليمي المبدئي",
+            "مستواك التعليمي الحالي",
             level
         )
+
+    st.caption(
+        f"المستوى المحدد بالاختبار القبلي: {initial_level}"
+    )
 
     st.info(
         "تم تحديد مستواك بناءً على إجابات الاختبار القبلي. "
